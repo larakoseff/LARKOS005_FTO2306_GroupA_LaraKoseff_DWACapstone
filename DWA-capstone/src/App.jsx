@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
-import "./App.css";
+import React from "react";
 import AllShows from "./AllShows.jsx";
 import PodcastShowComponent from "./PodcastShowComponent.jsx";
+import Navbar from "./Navbar.jsx";
+import './index.css'
 
 function App() {
   // const cards = data.map((item) => {
@@ -10,9 +11,19 @@ function App() {
 
   return (
     <>
-<PodcastShowComponent/>
-<AllShows />
-
+      <Navbar />
+      <div className="background">
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <div className="true--crime">
+        <p >True crime and Investigative Journalism</p><img src="../images/projects-icon.svg" className="tc--icon" />
+        </div>
+        <PodcastShowComponent className="show--comp"/>
+        <AllShows />
+      </div>
     </>
   );
 }

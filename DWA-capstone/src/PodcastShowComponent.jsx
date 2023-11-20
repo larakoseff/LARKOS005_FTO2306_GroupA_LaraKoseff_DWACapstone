@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './index.css'
 
 const PodcastShowComponent = () => {
   const [shows, setShows] = useState([]);
@@ -26,18 +27,18 @@ const PodcastShowComponent = () => {
 
   return (
     <div className="card">
-      <h2>True Crime and Investigative Journalism</h2>
-      <ul>
+      {/* <h2 className='section--title'>True Crime and Investigative Journalism</h2> */}
+      <div>
         {shows.map((show) => (
-          <li key={show.id}>
-            <h3>{show.title}</h3>
+          <div key={show.id}>
+            <h3 className="card--title">{show.title} </h3>
             {show.image && <img src={show.image} className="card--image" alt={show.title} />}
             <p>{show.description}</p>
             <p>Genres: {show.genres.join(', ')}</p>
-            {/* Add more details as needed */}
-          </li>
+            <button>Explore</button>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
