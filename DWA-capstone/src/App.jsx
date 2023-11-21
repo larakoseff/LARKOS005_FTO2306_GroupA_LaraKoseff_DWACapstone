@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className="background">
+      <div>
         <br />
         <br />
         <br />

@@ -47,7 +47,7 @@ h1 {
 nav {
   margin: 1rem;
   padding: 0.5rem 0.5rem;
-  width: 92%;
+  width: 93%;
   font-family: "Vina Sans", sans-serif;
   color: black;
   background-color: azure;
@@ -60,6 +60,7 @@ nav {
   border-style: solid;
   box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1);
   position: fixed;
+  z-index: 3;
 }
 
 .nav--logo {
@@ -71,8 +72,8 @@ button {
   font-family: "Chakra Petch", sans-serif;
   font-weight: 500;
   background-color: plum;
-  border-color: #1a1a1a;
-  border-style: solid;
+  /* border-color: #1a1a1a; */
+  border-style: none;
   width: 80px;
   height: 30px;
   border-radius: 20px;
@@ -192,4 +193,48 @@ button:hover {
 
 .gray {
   color: #918e9b;
+}
+
+.slick-slider {
+  position: relative; /* Make sure the parent container is positioned */
+  margin: 1rem;
+  padding: 1rem 1.5rem;
+  width: 100%;
+  font-size: 15px;
+  list-style-type: none;
+  background-color: azure;
+  border-color: #1a1a1a;
+  border-style: solid;
+  height: 60vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  z-index: 1; /* Increase the z-index so that it appears above other elements */
+}
+
+.slick-slide {
+  margin: 0 10px;
+}
+
+.slick-list {
+  margin: 0 -10px;
+}
+
+.slider--arrows {
+  position: absolute; /* Position the arrows relative to the .slick-slider */
+  top: 50%; /* Center vertically */
+  left: 0; /* Align to the left edge of the .slick-slider */
+  right: 0; /* Align to the right edge of the .slick-slider */
+  transform: translateY(-50%); /* Center vertically */
+  margin: 1rem;
+  padding: 1rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 2; /* Make sure it's above the .slick-slider */
+}
+
+.arrow--left,
+.arrow--right {
+  width: 4rem;
 }

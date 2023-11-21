@@ -11,8 +11,6 @@ export default function AllShows() {
         const response = await fetch('https://podcast-api.netlify.app/shows');
         const data = await response.json();
         setShows(data);
-
-        // Introduce a 2-second delay before setting loading to false
         setTimeout(() => {
           setLoading(false);
         }, 2000);

@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import './index.css'
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import './index.css';
 
 const PodcastShowComponent = () => {
   const [shows, setShows] = useState([]);
-  const targetGenreId = 2; // Replace with the specific genre ID you want to show
+  const targetGenreId = 2;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch('https://podcast-api.netlify.app/shows');
         const data = await response.json();
-        
-        // Filter shows based on the specified genre ID
+
         const filteredShows = data.filter((show) =>
           show.genres.includes(targetGenreId)
         );
@@ -23,22 +25,77 @@ const PodcastShowComponent = () => {
     };
 
     fetchData();
-  }, [targetGenreId]); // Include targetGenreId in the dependency array
+  }, [targetGenreId]);
+
+  const truncateDescription = (description, maxWords) => {
+    const words = description.split(' ');
+    if (words.length > maxWords) {
+      return words.slice(0, maxWords).join(' ') + '...';
+    }
+    return description;
+  };
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+      arrows: false,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
+  const renderArrows = () => (
+    <div className="slider--arrows">
+      <div className="arrow--prev" onClick={() => sliderRef.current.slickPrev()}>
+      <img src="../images/caret-circle-left.svg"className="arrow--left"/>
+      </div>
+      <div className="arrow--next" onClick={() => sliderRef.current.slickNext()}>
+      <img src="../images/caret-circle-right.svg"className="arrow--right"/>
+      </div>
+    </div>
+  );
+
+  const renderDots = (dots) => (
+    <ul className="custom-dots-container">
+      {dots.map((dot, index) => (
+        <li key={index}>{dot}</li>
+      ))}
+    </ul>
+  );
+
+  const sliderRef = React.createRef();
 
   return (
-    <div className="card">
-      {/* <h2 className='section--title'>True Crime and Investigative Journalism</h2> */}
-      <div>
+    <div className="custom-slider-container">
+      {renderArrows()}
+      <Slider ref={sliderRef} {...settings} appendDots={renderDots}>
         {shows.map((show) => (
           <div key={show.id}>
             <h3 className="card--title">{show.title} </h3>
             {show.image && <img src={show.image} className="card--image" alt={show.title} />}
-            <p>{show.description}</p>
-            <p>Genres: {show.genres.join(', ')}</p>
+            <p>{truncateDescription(show.description, 40)}</p>
             <button>Explore</button>
           </div>
         ))}
-      </div>
+      </Slider>
     </div>
   );
 };
