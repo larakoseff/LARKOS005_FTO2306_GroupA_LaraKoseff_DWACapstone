@@ -2,6 +2,7 @@ import React from "react";
 import AllShows from "./AllShows.jsx";
 import PodcastShowComponent from "./PodcastShowComponent.jsx";
 import Navbar from "./Navbar.jsx";
+import PodcastPreview from "./PodcastPreview.jsx";
 import './index.css'
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         </div>
         <PodcastShowComponent className="show--comp"/>
         {/* <AllShows /> */}
+        <PodcastPreview/>
       </div>
     </>
   );

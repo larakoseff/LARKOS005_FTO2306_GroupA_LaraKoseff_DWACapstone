@@ -118,6 +118,18 @@ button:hover {
 }
 
 
+.season--dialog {
+  margin: 1rem;
+  padding: 1rem 1.5rem;
+  width: 50%;
+  font-size: 15px;
+  list-style-type: none;
+  background-color: azure;
+  border-color: #1a1a1a;
+  border-style: solid;
+  text-overflow: ellipsis;
+}
+
 
 .true--crime {
   margin: 1rem;
