@@ -68,6 +68,17 @@ nav {
   margin: 1rem;
 }
 
+.nav--icons {
+  display: flex;
+  justify-content: flex-end; /* Align icons to the right */
+  align-items: center;
+}
+
+.nav--icon {
+  height: 3vh;
+  margin-left: 1rem; /* Add some spacing between icons */
+}
+
 button {
   font-family: "Chakra Petch", sans-serif;
   font-weight: 500;
@@ -90,7 +101,7 @@ button:hover {
 
 @keyframes divcolor {
   0% {
-    background-color: #fde9ff;
+    background-color: #fdebff;
   }
   25% {
     background-color: #7600ff;
@@ -106,9 +117,7 @@ button:hover {
   }
 }
 
-.nav--search {
-  height: 3vh;
-}
+
 
 .true--crime {
   margin: 1rem;

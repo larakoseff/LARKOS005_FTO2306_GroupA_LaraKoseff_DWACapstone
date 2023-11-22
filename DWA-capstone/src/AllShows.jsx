@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import './index.css'
+import React, { useState, useEffect } from "react";
+import "./index.css";
 
 export default function AllShows() {
   const [shows, setShows] = useState([]);
@@ -8,21 +8,20 @@ export default function AllShows() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://podcast-api.netlify.app/shows');
+        const response = await fetch("https://podcast-api.netlify.app/shows");
         const data = await response.json();
         setShows(data);
         setTimeout(() => {
           setLoading(false);
         }, 2000);
       } catch (error) {
-        console.error('Error fetching podcast shows:', error);
+        console.error("Error fetching podcast shows:", error);
         setLoading(false);
       }
     };
 
     fetchData();
   }, []);
-
 
   return (
     <div className="card">
@@ -34,8 +33,15 @@ export default function AllShows() {
           {shows.map((show) => (
             <li key={show.id}>
               <h3 className="card--title">{show.title}</h3>
-              {show.image && <img src={show.image} alt={show.title} className="card--image" />}
+              {show.image && (
+                <img
+                  src={show.image}
+                  alt={show.title}
+                  className="card--image"
+                />
+              )}
               <p>{show.description}</p>
+              <button>Explore</button>
             </li>
           ))}
         </ul>
