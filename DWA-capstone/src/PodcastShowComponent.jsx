@@ -2,11 +2,17 @@ import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Child from "./components/ChildtoParent/ChildtoParent.jsx";
 import "./index.css";
 
 const PodcastShowComponent = () => {
   const [shows, setShows] = useState([]);
+  const [previewData, setPreviewData] = useState("");
   const targetGenreId = 2;
+
+  const childToParent = (childdata) => {
+    setPreviewData(childdata);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -96,7 +102,12 @@ const PodcastShowComponent = () => {
             <div>Seasons: {show.seasons}</div>
             <div>Last updated: {new Date(show.updated).toLocaleString()}</div>
             <br />
-            <button className="explore--button">Explore</button>
+            <div className="child">
+              {previewData}
+              <div className="child">
+                <Child childToParent={childToParent} />
+              </div>
+            </div>
           </div>
         ))}
       </Slider>

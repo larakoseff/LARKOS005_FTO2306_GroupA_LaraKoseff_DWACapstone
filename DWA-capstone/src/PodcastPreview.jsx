@@ -53,17 +53,9 @@ export default function PodcastPreview() {
             </button>
           </div>
 
-          {/* <h2>Season {showSeason}</h2> */}
           {currentSeasonData.title && (
             <div>
               <h4>{currentSeasonData.title}</h4>
-              {/* {currentSeasonData.image && (
-                <img
-                  src={currentSeasonData.image}
-                  alt={currentSeasonData.title}
-                  className="card--image"
-                />
-              )} */}
               {currentSeasonData.episodes && (
                 <div>
                   <h5>Episodes:</h5>

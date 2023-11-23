@@ -25,8 +25,8 @@ function App() {
         <PodcastShowComponent className="show--comp"/>
         {/* <AllShows /> */}
         {/* <PodcastPreview/> */}
-        <CustomizedDialogs />
-        <Parent />
+        {/* <CustomizedDialogs />
+        <Parent /> */}
         
       </div>
     </>
