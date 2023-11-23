@@ -3,6 +3,8 @@ import AllShows from "./AllShows.jsx";
 import PodcastShowComponent from "./PodcastShowComponent.jsx";
 import Navbar from "./Navbar.jsx";
 import PodcastPreview from "./PodcastPreview.jsx";
+import CustomizedDialogs from "./ModalExample.jsx";
+import Parent from "./components/ChildtoParent/ChildtoParent.jsx";
 import './index.css'
 
 function App() {
@@ -22,7 +24,10 @@ function App() {
         </div>
         <PodcastShowComponent className="show--comp"/>
         {/* <AllShows /> */}
-        <PodcastPreview/>
+        {/* <PodcastPreview/> */}
+        <CustomizedDialogs />
+        <Parent />
+        
       </div>
     </>
   );

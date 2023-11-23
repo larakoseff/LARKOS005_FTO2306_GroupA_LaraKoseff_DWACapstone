@@ -1,11 +1,32 @@
-import React from "react";
-// import { Button } from 'semantic-ui-react';
-import "./index.css";
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 
-export default function PodcastPreview() {
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+  '& .MuiDialogContent-root': {
+    padding: theme.spacing(2),
+  },
+  '& .MuiDialogActions-root': {
+    padding: theme.spacing(1),
+  },
+}));
+
+export default function CustomizedDialogs() {
+  const [open, setOpen] = React.useState(false);
   const [showData, setShowData] = React.useState({});
   const [showID, setShowID] = React.useState(5675);
   const [showSeason, setShowSeason] = React.useState(1);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   React.useEffect(
     function () {
@@ -19,7 +40,29 @@ export default function PodcastPreview() {
   const currentSeasonData = showData.seasons?.[showSeason - 1] || {};
 
   return (
-    <div className="season--dialog">
+    <React.Fragment>
+      <Button className="explore--button" onClick={handleClickOpen}>
+        Explore
+      </Button>
+      <BootstrapDialog
+        onClose={handleClose}
+        aria-labelledby="customized-dialog-title"
+        open={open}
+      >
+        <IconButton
+          aria-label="close"
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        <DialogContent dividers>
+        <div>
       {showData.title && (
         <div>
           <h3>{showData.title}</h3>
@@ -52,26 +95,17 @@ export default function PodcastPreview() {
               Next Season
             </button>
           </div>
-
-          {/* <h2>Season {showSeason}</h2> */}
           {currentSeasonData.title && (
             <div>
               <h4>{currentSeasonData.title}</h4>
-              {/* {currentSeasonData.image && (
-                <img
-                  src={currentSeasonData.image}
-                  alt={currentSeasonData.title}
-                  className="card--image"
-                />
-              )} */}
               {currentSeasonData.episodes && (
                 <div>
                   <h5>Episodes:</h5>
                   <ul>
                     {currentSeasonData.episodes.map((episode, index) => (
-                      <li key={index}>
+                      <li key={index} className="episodes">
                         <p>
-                          Episode {episode.episode}: {episode.title}
+                          Episode {episode.episode}: {episode.title}   <img src="../images/star-empty.svg" className="star--empty" />
                         </p>
                         {episode.file && (
                           <audio
@@ -96,5 +130,8 @@ export default function PodcastPreview() {
 
       {/* <pre>{JSON.stringify(showData, null, 2)}</pre> */}
     </div>
+        </DialogContent>
+      </BootstrapDialog>
+    </React.Fragment>
   );
 }

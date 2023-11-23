@@ -47,7 +47,7 @@ h1 {
 nav {
   margin: 1rem;
   padding: 0.5rem 0.5rem;
-  width: 93%;
+  width: 95%;
   font-family: "Vina Sans", sans-serif;
   color: black;
   background-color: azure;
@@ -79,11 +79,10 @@ nav {
   margin-left: 1rem; /* Add some spacing between icons */
 }
 
-button {
+.explore--button {
   font-family: "Chakra Petch", sans-serif;
   font-weight: 500;
   background-color: plum;
-  /* border-color: #1a1a1a; */
   border-style: none;
   width: 80px;
   height: 30px;
@@ -91,7 +90,8 @@ button {
   border-width: 0.1rem;
 }
 
-button:hover {
+
+.explore--button:hover {
   animation-name: divcolor;
   animation-duration: 6s;
   animation-iteration-count: infinite;
@@ -150,6 +150,14 @@ button:hover {
 
 .tc--icon {
   height: 3vh;
+}
+
+.star--empty {
+  height: 1.2rem;
+}
+
+.episodes {
+  list-style-type: none;
 }
 
 .card {

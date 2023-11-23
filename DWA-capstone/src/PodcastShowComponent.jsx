@@ -46,10 +46,12 @@ const PodcastShowComponent = () => {
       {
         breakpoint: 1024,
         settings: {
+          dots: false,
+          infinite: true,
+          speed: 500,
           slidesToShow: 2,
           slidesToScroll: 1,
-          infinite: true,
-          dots: false,
+          arrows: false,
         },
       },
     ],
@@ -91,7 +93,10 @@ const PodcastShowComponent = () => {
               <img src={show.image} className="card--image" alt={show.title} />
             )}
             <p>{truncateDescription(show.description, 40)}</p>
-            <button>Explore</button>
+            <div>Seasons: {show.seasons}</div>
+            <div>Last updated: {new Date(show.updated).toLocaleString()}</div>
+            <br />
+            <button className="explore--button">Explore</button>
           </div>
         ))}
       </Slider>
