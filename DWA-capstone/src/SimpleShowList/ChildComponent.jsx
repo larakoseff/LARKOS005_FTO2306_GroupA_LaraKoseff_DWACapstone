@@ -15,7 +15,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     },
   }));
 
-const Child = ({ childToParent, show, id }) => {
+const ChildComponent = ({ childToParent, show, id }) => {
     const [open, setOpen] = React.useState(false);
     const [showData, setShowData] = React.useState({});
     const [showID, setShowID] = React.useState(id);
@@ -133,11 +133,11 @@ const Child = ({ childToParent, show, id }) => {
           </div>
         </DialogContent>
       </BootstrapDialog>
-    <div>
+    {/* <div>
       <p>{id}</p>
-    </div>
+    </div> */}
     </React.Fragment>
   );
 };
 
-export default Child;
+export default ChildComponent;

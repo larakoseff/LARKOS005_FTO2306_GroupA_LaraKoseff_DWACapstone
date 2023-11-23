@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Child from "./components/ChildtoParent/ChildtoParent.jsx";
-import "./index.css";
+import ChildComponent from './ChildComponent.jsx';
+import "../index.css";
 
-const PodcastShowComponent = () => {
+
+const ParentComponent = () => {
   const [shows, setShows] = useState([]);
   const [previewData, setPreviewData] = useState("");
   const targetGenreId = 2;
@@ -89,7 +90,8 @@ const PodcastShowComponent = () => {
   const sliderRef = React.createRef();
 
   return (
-    <div className="custom-slider-container">
+    <div>
+           <div className="custom-slider-container">
       {renderArrows()}
       <Slider ref={sliderRef} {...settings}>
         {shows.map((show) => (
@@ -105,14 +107,19 @@ const PodcastShowComponent = () => {
             {/* <button className="explore--button">Explore</button> */}
             <div className="child">
               <div className="child">
-                <Child childToParent={childToParent} key={show.id} id={parseInt(show.id, 10)}/>
+                <ChildComponent childToParent={childToParent} key={show.id} id={parseInt(show.id, 10)} />
               </div>
             </div>
           </div>
         ))}
       </Slider>
     </div>
+      {/* <h2>Parent Component</h2>
+      {shows.map((show) => (
+        <ChildComponent key={show.id} id={parseInt(show.id, 10)} />
+      ))} */}
+    </div>
   );
 };
 
-export default PodcastShowComponent;
+export default ParentComponent;

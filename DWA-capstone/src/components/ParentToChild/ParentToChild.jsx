@@ -4,7 +4,7 @@ import { Button } from 'semantic-ui-react';
 import { useState } from 'react';
 import '../App.css';
 
-export default function Parent() {
+export default function ParentToChild() {
   const [data, setData] = useState('');
   
   const parentToChild = () => {
