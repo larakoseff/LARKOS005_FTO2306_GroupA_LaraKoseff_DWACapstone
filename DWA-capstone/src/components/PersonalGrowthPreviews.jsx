@@ -15,7 +15,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     },
   }));
 
-const ChildComponent = ({ childToParent, show, id }) => {
+const PersonalGrowthPreviews = ({ childToParent, show, id }) => {
     const [open, setOpen] = React.useState(false);
     const [showData, setShowData] = React.useState({});
     const [showID, setShowID] = React.useState(id);
@@ -140,4 +140,4 @@ const ChildComponent = ({ childToParent, show, id }) => {
   );
 };
 
-export default ChildComponent;
+export default PersonalGrowthPreviews;

@@ -1,0 +1,25 @@
+.custom-arrows-container {
+    position: relative;
+  }
+  
+  .slider--arrow-prev,
+  .slider--arrow-next {
+    font-family: "Karla", sans-serif;
+    position: absolute;
+    width: 4rem;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-right: 3rem;
+    margin-left: 1rem;
+    cursor: pointer;
+    z-index: 2;
+  }
+  
+  .slider--arrow-prev {
+    left: 0;
+  }
+  
+  .slider--arrow-next {
+    right: 0;
+  }
+

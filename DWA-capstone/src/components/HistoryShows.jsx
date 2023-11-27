@@ -1,15 +1,44 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import ChildComponent from './ChildComponent.jsx';
+import ShowPreviews from "./ShowPreviews.jsx";
+import "./CustomArrows.css";
 import "../index.css";
 
+function NextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div  onClick={onClick}>
+      <img
+        src="../images/caret-circle-right-purple.svg"
+        style={{ ...style, height: "4rem" }}
+        alt="Next Arrow"
+        className={`${className} slider--arrow-next`}
+      />
+    </div>
+  );
+}
 
-const ParentComponent = () => {
+function PrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div onClick={onClick}>
+      <img
+        src="../images/caret-circle-left-purple.svg"
+        style={{ ...style, display: "block", height: "4rem" }}
+        alt="Previous Arrow"
+        className={`${className} slider--arrow-prev`} 
+      />
+    </div>
+  );
+}
+
+const HistoryShows = () => {
   const [shows, setShows] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [previewData, setPreviewData] = useState("");
-  const targetGenreId = 2;
+  const targetGenreId = 3;
 
   const childToParent = (childdata) => {
     setPreviewData(childdata);
@@ -26,6 +55,9 @@ const ParentComponent = () => {
         );
 
         setShows(filteredShows);
+        setTimeout(() => {
+        setLoading(false);
+        }, 2000);
       } catch (error) {
         console.error("Error fetching podcast shows:", error);
       }
@@ -45,55 +77,21 @@ const ParentComponent = () => {
   const settings = {
     dots: false,
     infinite: true,
-    speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 2,
     slidesToScroll: 1,
-    arrows: false,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          dots: false,
-          infinite: true,
-          speed: 500,
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          arrows: false,
-        },
-      },
-    ],
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    
   };
 
-  const renderArrows = () => (
-    <div className="slider--arrows">
-      <div
-        className="arrow--prev"
-        onClick={() => sliderRef.current.slickPrev()}
-      >
-        <img
-          src="../images/caret-circle-left-purple.svg"
-          className="arrow--left"
-        />
-      </div>
-      <div
-        className="arrow--next"
-        onClick={() => sliderRef.current.slickNext()}
-      >
-        <img
-          src="../images/caret-circle-right-purple.svg"
-          className="arrow--right"
-        />
-      </div>
-    </div>
-  );
-
-  const sliderRef = React.createRef();
-
   return (
-    <div>
-           <div className="custom-slider-container">
-      {renderArrows()}
-      <Slider ref={sliderRef} {...settings}>
+    <div className="custom-slider-container">
+        {loading ? (
+        <div className="loading-container">
+        <div className="card--title">Loading...</div>
+      </div>
+      ) : (
+      <Slider {...settings}>
         {shows.map((show) => (
           <div key={show.id}>
             <h3 className="card--title">{show.title} </h3>
@@ -104,22 +102,20 @@ const ParentComponent = () => {
             <div>Seasons: {show.seasons}</div>
             <div>Last updated: {new Date(show.updated).toLocaleString()}</div>
             <br />
-            {/* <button className="explore--button">Explore</button> */}
-            <div className="child">
+
               <div className="child">
-                <ChildComponent childToParent={childToParent} key={show.id} id={parseInt(show.id, 10)} />
-              </div>
+                <ShowPreviews
+                  childToParent={childToParent}
+                  key={show.id}
+                  id={parseInt(show.id, 10)}
+                />
             </div>
           </div>
         ))}
       </Slider>
-    </div>
-      {/* <h2>Parent Component</h2>
-      {shows.map((show) => (
-        <ChildComponent key={show.id} id={parseInt(show.id, 10)} />
-      ))} */}
+      )}
     </div>
   );
 };
 
-export default ParentComponent;
+export default HistoryShows;
