@@ -6,6 +6,8 @@ import DialogContent from "@mui/material/DialogContent";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import FavoriteEpisodesList from "./Favourites.jsx"
+import { useNavigate } from 'react-router-dom';
+import { useFavorites } from "../state/FavouritesContext.jsx"
 
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -26,6 +28,12 @@ const ShowPreviews = ({ childToParent, show, id }) => {
     const storedFavorites = localStorage.getItem("favorites");
     return storedFavorites ? JSON.parse(storedFavorites) : [];
   });
+  const { dispatch } = useFavorites(); // Access global favorites state
+  const navigate = useNavigate(); // Use useNavigate to handle navigation
+
+  const handleNavigateToFavorites = () => {
+    navigate('/favorites');
+  };
 
   const findFavoriteIndex = (episodeId, showID, season) => {
     return favorites.findIndex(
@@ -36,25 +44,33 @@ const ShowPreviews = ({ childToParent, show, id }) => {
     );
   };
 
-  const isFavorite = (episodeId, showID, season) => {
+const isFavorite = (episodeId, showID, season) => {
     const index = findFavoriteIndex(episodeId, showID, season);
     return index !== -1;
   };
 
-  const toggleFavorite = (episodeId) => {
-    const index = findFavoriteIndex(episodeId, showID, showSeason);
-    if (index !== -1) {
-      setFavorites((prevFavorites) => [
-        ...prevFavorites.slice(0, index),
-        ...prevFavorites.slice(index + 1),
-      ]);
-    } else {
-      setFavorites((prevFavorites) => [
-        ...prevFavorites,
-        { episodeId, showID, season: showSeason },
-      ]);
-    }
-  };
+const toggleFavorite = (episodeId) => {
+  const index = findFavoriteIndex(episodeId, showID, showSeason);
+
+  if (index !== -1) {
+
+    setFavorites((prevFavorites) => [
+      ...prevFavorites.slice(0, index),
+      ...prevFavorites.slice(index + 1),
+    ]);
+  } else {
+
+    setFavorites((prevFavorites) => [
+      ...prevFavorites,
+      { episodeId, showID, season: showSeason },
+    ]);
+  }
+
+  dispatch({
+    type: 'TOGGLE_FAVORITE',
+    payload: { episodeId, showID, season: showSeason },
+  });
+};
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -155,7 +171,7 @@ const ShowPreviews = ({ childToParent, show, id }) => {
                     {currentSeasonData.episodes && (
           <div>
             <h5>Episodes:</h5>
-            <ul>
+            <ul className="no-list-style">
               {currentSeasonData.episodes.map((episode, index) => (
                 <li key={index} className="episodes">
                   <p>

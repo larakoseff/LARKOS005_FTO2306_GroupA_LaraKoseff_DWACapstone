@@ -216,7 +216,6 @@ export default function AllShows() {
           </ul>
         )}
       </div>
-<FavoriteEpisodesList />
     </>
   );
 }

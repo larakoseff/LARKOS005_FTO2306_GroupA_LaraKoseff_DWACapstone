@@ -3,21 +3,24 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./Navbar.jsx";
 import "./index.css";
 import AllShows from "./components/AllShows.jsx";
-import FavoriteEpisodesList from "./components/Favourites.jsx";
-import Home from "./components/Home.jsx"
+import FavoriteEpisodesPage from "./components/FavouriteEpisodesPage.jsx";
+import Home from "./components/Home.jsx";
+import { FavoritesProvider } from "./state/FavouritesContext.jsx";
 
 function App() {
   return (
     <>
       <Router>
-        <div>
-          <Navbar />
-          <Routes>
-            <Route path="/search" element={<AllShows />} />
-            <Route path="/favourites" element={<FavoriteEpisodesList />} />
-            <Route path="/" element={<Home />} />
-          </Routes>
-        </div>
+        <FavoritesProvider>
+          <div>
+            <Navbar />
+            <Routes>
+              <Route path="/search" element={<AllShows />} />
+              <Route path="/favourites" element={<FavoriteEpisodesPage />} />
+              <Route path="/" element={<Home />} />
+            </Routes>
+          </div>
+        </FavoritesProvider>
       </Router>
     </>
   );
