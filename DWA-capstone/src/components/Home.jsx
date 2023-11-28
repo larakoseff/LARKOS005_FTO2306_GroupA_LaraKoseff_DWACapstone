@@ -8,7 +8,6 @@ import "../index.css";
 export default function Home() {
   return (
     <div>
-      <Link to="/">
         <div>
           <br />
           <br />
@@ -19,6 +18,7 @@ export default function Home() {
             <p>Personal Growth</p>
             <img src="../images/projects-icon.svg" className="tc--icon" />
           </div>
+          <div> </div>
           <PersonalGrowthShows />
           <div className="true--crime">
             <p>True crime and Investigative Journalism</p>
@@ -31,7 +31,6 @@ export default function Home() {
           </div>
           <HistoryShows />
         </div>
-      </Link>
     </div>
   );
 }

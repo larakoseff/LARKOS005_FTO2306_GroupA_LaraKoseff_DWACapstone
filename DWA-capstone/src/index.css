@@ -56,6 +56,7 @@ ul.no-list-style {
 .card--title {
   font-family: "Chakra Petch", sans-serif;
   font-weight: 500;
+  font-size: 20px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -121,6 +122,25 @@ nav {
   animation-direction: alternate;
 }
 
+.season--button {
+  font-family: "Chakra Petch", sans-serif;
+  font-weight: 500;
+  background-color: plum;
+  border-style: none;
+  width: 15vw;
+  height: 3vh;
+  border-radius: 20px;
+  border-width: 0.1rem;
+}
+
+.season--button:hover {
+  animation-name: divcolor;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in;
+  animation-direction: alternate;
+}
+
 @keyframes divcolor {
   0% {
     background-color: #fdebff;
@@ -153,53 +173,56 @@ nav {
 
 .true--crime {
   margin: 1rem;
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 50%;
-  font-family: "Chakra Petch", sans-serif;
+  width: 95%;
+  font-family: 'Outfit', sans-serif;
   font-weight: 500;
-  font-size: medium;
+  font-size: 30px;
+  letter-spacing: 1.5px;
   list-style-type: none;
-  background-color: greenyellow;
+  /* background-color: greenyellow;
   border-color: #1a1a1a;
   border-style: solid;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis; */
 }
 
 .personal--growth {
   margin: 1rem;
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 50%;
-  font-family: "Chakra Petch", sans-serif;
+  width: 95%;
+  font-family: 'Outfit', sans-serif;
   font-weight: 500;
-  font-size: medium;
+  font-size: 30px;
+  letter-spacing: 1.5px;
   list-style-type: none;
-  background-color: rgb(47, 147, 255);
+  /* background-color: rgb(47, 147, 255);
   border-color: #1a1a1a;
   border-style: solid;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis; */
 }
 
 .history {
   margin: 1rem;
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 50%;
-  font-family: "Chakra Petch", sans-serif;
+  width: 95%;
+  font-family: 'Outfit', sans-serif;
   font-weight: 500;
-  font-size: medium;
+  font-size: 30px;
+  letter-spacing: 1.5px;
   list-style-type: none;
-  background-color: rgb(245, 255, 47);
+  /* background-color: rgb(245, 255, 47);
   border-color: #1a1a1a;
   border-style: solid;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis; */
 }
 
 .tc--icon {
@@ -240,16 +263,31 @@ nav {
 
 select {
   font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  width: auto;
+  border: none;
+  border-bottom: 2px solid #7600ff;;
+  background-color: azure;
 }
 
-input {
-  border-color: none;
+input[type=text] {
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  width: 50%;
+  border: none;
+  border-bottom: 2px solid #7600ff;;
+  background-color: azure;
+
+}
+
+input:focus-visible {
+  outline: none;
 }
 
 .filter--label {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 24px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 400;
+  font-size: 22px;
 
 }
 

@@ -7,42 +7,54 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-    "& .MuiDialogContent-root": {
-      padding: theme.spacing(2),
-    },
-    "& .MuiDialogActions-root": {
-      padding: theme.spacing(1),
-    },
-  }));
+  "& .MuiDialogContent-root": {
+    padding: theme.spacing(2),
+  },
+  "& .MuiDialogActions-root": {
+    padding: theme.spacing(1),
+  },
+}));
 
 const ShowPreviews = ({ childToParent, show, id }) => {
-    const [open, setOpen] = React.useState(false);
-    const [showData, setShowData] = React.useState({});
-    const [showID, setShowID] = React.useState(id);
-    const [showSeason, setShowSeason] = React.useState(1);
+  const [open, setOpen] = React.useState(false);
+  const [showData, setShowData] = React.useState({});
+  const [showID, setShowID] = React.useState(id);
+  const [showSeason, setShowSeason] = React.useState(1);
+  const [favourite, setFavourite] = React.useState({
+    isFavorite: false
+})
 
-    const handleClickOpen = () => {
-        setOpen(true);
-        setShowID(id)
-      };
-      const handleClose = () => {
-        setOpen(false);
-      };
+let starIcon = favourite.isFavorite ? "star-fill.svg" : "star-empty.svg"
+    
+function toggleFavorite() {
+    setFavourite(prevFav => ({
+        ...prevFav,
+        isFavorite: !prevFav.isFavorite
+    }))
+}
 
-      React.useEffect(
-        function () {
-          fetch(`https://podcast-api.netlify.app/id/${id}`)
-            .then((res) => res.json())
-            .then((data) => setShowData(data));
-        },
-        [id]
-      );
+  const handleClickOpen = () => {
+    setOpen(true);
+    setShowID(id);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
-      const currentSeasonData = showData.seasons?.[showSeason - 1] || {};
+  React.useEffect(
+    function () {
+      fetch(`https://podcast-api.netlify.app/id/${id}`)
+        .then((res) => res.json())
+        .then((data) => setShowData(data));
+    },
+    [id]
+  );
+
+  const currentSeasonData = showData.seasons?.[showSeason - 1] || {};
 
   return (
     <React.Fragment>
-              <Button className="explore--button" onClick={handleClickOpen}>
+      <Button className="explore--button" onClick={handleClickOpen}>
         Explore
       </Button>
       <BootstrapDialog
@@ -66,7 +78,7 @@ const ShowPreviews = ({ childToParent, show, id }) => {
           <div>
             {showData.title && (
               <div>
-                <h3>{showData.title}</h3>
+                <h3 className="card--title">{showData.title}</h3>
 
                 {showData.image && (
                   <img
@@ -80,13 +92,15 @@ const ShowPreviews = ({ childToParent, show, id }) => {
 
                 <div>
                   <button
+                    className="season--button"
                     onClick={() =>
                       setShowSeason((prevSeason) => Math.max(prevSeason - 1, 1))
                     }
                   >
                     Previous Season
-                  </button>
+                  </button>{" "}
                   <button
+                    className="season--button"
                     onClick={() =>
                       setShowSeason((prevSeason) =>
                         Math.min(prevSeason + 1, showData.seasons.length)
@@ -108,8 +122,9 @@ const ShowPreviews = ({ childToParent, show, id }) => {
                               <p>
                                 Episode {episode.episode}: {episode.title}{" "}
                                 <img
-                                  src="../images/star-empty.svg"
+                                  src={`../images/${starIcon}`}
                                   className="star--empty"
+                                  onClick={toggleFavorite}
                                 />
                               </p>
                               {episode.file && (

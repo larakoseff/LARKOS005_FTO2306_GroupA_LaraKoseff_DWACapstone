@@ -122,7 +122,7 @@ export default function AllShows() {
               value={sortType || ""}
               onChange={(e) => handleSort(e.target.value)}
             >
-              <option value="">--Select--</option>
+              <option value="">Select</option>
               <option value="title-asc">Title A-Z</option>
               <option value="title-desc">Title Z-A</option>
             </select>
@@ -138,7 +138,7 @@ export default function AllShows() {
               value={sortType || ""}
               onChange={(e) => handleSort(e.target.value)}
             >
-              <option value="">--Select--</option>
+              <option value="">Select</option>
               <option value="date-asc">Date Ascending</option>
               <option value="date-desc">Date Descending</option>
             </select>
@@ -154,7 +154,7 @@ export default function AllShows() {
               value={genreSort || ""}
               onChange={(e) => handleSort(`genre-${e.target.value}`)}
             >
-              <option value="">--Select--</option>
+              <option value="">Select</option>
               <option value="1">Personal Growth</option>
               <option value="2">True Crime and Investigative Journalism</option>
               <option value="3">History</option>
@@ -175,7 +175,9 @@ export default function AllShows() {
             Clear Filters
           </button>
         </div>
-
+        <br />
+        <Divider />
+        <br />
         {loading ? (
           <p>Loading...</p>
         ) : filteredAndSortedShows.length === 0 ? (
@@ -198,6 +200,7 @@ export default function AllShows() {
                   Last updated: {new Date(show.updated).toLocaleString()}
                 </div>
                 <br />
+
                 <div className="child">
                   <ShowPreviews
                     childToParent={childToParent}
@@ -205,6 +208,8 @@ export default function AllShows() {
                     id={parseInt(show.id, 10)}
                   />
                 </div>
+                <br />
+                <Divider />
               </div>
             ))}
           </ul>
