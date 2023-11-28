@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./Navbar.jsx";
 import "./index.css";
 import AllShows from "./components/AllShows.jsx";
-import Favourites from "./components/Favourites.jsx";
+import FavoriteEpisodesList from "./components/Favourites.jsx";
 import Home from "./components/Home.jsx"
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/search" element={<AllShows />} />
-            <Route path="/favourites" element={<Favourites />} />
+            <Route path="/favourites" element={<FavoriteEpisodesList />} />
             <Route path="/" element={<Home />} />
           </Routes>
         </div>

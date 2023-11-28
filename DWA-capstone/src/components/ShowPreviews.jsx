@@ -5,6 +5,8 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import FavoriteEpisodesList from "./Favourites.jsx"
+
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -20,18 +22,39 @@ const ShowPreviews = ({ childToParent, show, id }) => {
   const [showData, setShowData] = React.useState({});
   const [showID, setShowID] = React.useState(id);
   const [showSeason, setShowSeason] = React.useState(1);
-  const [favourite, setFavourite] = React.useState({
-    isFavorite: false
-})
+  const [favorites, setFavorites] = React.useState(() => {
+    const storedFavorites = localStorage.getItem("favorites");
+    return storedFavorites ? JSON.parse(storedFavorites) : [];
+  });
 
-let starIcon = favourite.isFavorite ? "star-fill.svg" : "star-empty.svg"
-    
-function toggleFavorite() {
-    setFavourite(prevFav => ({
-        ...prevFav,
-        isFavorite: !prevFav.isFavorite
-    }))
-}
+  const findFavoriteIndex = (episodeId, showID, season) => {
+    return favorites.findIndex(
+      (fav) =>
+        fav.episodeId === episodeId &&
+        fav.showID === showID &&
+        fav.season === season
+    );
+  };
+
+  const isFavorite = (episodeId, showID, season) => {
+    const index = findFavoriteIndex(episodeId, showID, season);
+    return index !== -1;
+  };
+
+  const toggleFavorite = (episodeId) => {
+    const index = findFavoriteIndex(episodeId, showID, showSeason);
+    if (index !== -1) {
+      setFavorites((prevFavorites) => [
+        ...prevFavorites.slice(0, index),
+        ...prevFavorites.slice(index + 1),
+      ]);
+    } else {
+      setFavorites((prevFavorites) => [
+        ...prevFavorites,
+        { episodeId, showID, season: showSeason },
+      ]);
+    }
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -41,16 +64,32 @@ function toggleFavorite() {
     setOpen(false);
   };
 
-  React.useEffect(
-    function () {
-      fetch(`https://podcast-api.netlify.app/id/${id}`)
-        .then((res) => res.json())
-        .then((data) => setShowData(data));
-    },
-    [id]
-  );
+  React.useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
+
+  React.useEffect(() => {
+    fetch(`https://podcast-api.netlify.app/id/${id}`)
+      .then((res) => res.json())
+      .then((data) => setShowData(data));
+  }, [id]);
 
   const currentSeasonData = showData.seasons?.[showSeason - 1] || {};
+
+  const favoriteEpisodes = currentSeasonData.episodes
+  ? currentSeasonData.episodes
+      .filter((episode) => isFavorite(episode.episode, showID, showSeason))
+      .map((episode) => ({
+        episodeId: episode.episode,
+        showID,
+        season: showSeason,
+        title: episode.title,
+        showTitle: showData.title,
+        seasonTitle: currentSeasonData.title,
+        file: episode.file,
+      }))
+  : [];
+
 
   return (
     <React.Fragment>
@@ -114,19 +153,23 @@ function toggleFavorite() {
                   <div>
                     <h4>{currentSeasonData.title}</h4>
                     {currentSeasonData.episodes && (
-                      <div>
-                        <h5>Episodes:</h5>
-                        <ul>
-                          {currentSeasonData.episodes.map((episode, index) => (
-                            <li key={index} className="episodes">
-                              <p>
-                                Episode {episode.episode}: {episode.title}{" "}
-                                <img
-                                  src={`../images/${starIcon}`}
-                                  className="star--empty"
-                                  onClick={toggleFavorite}
-                                />
-                              </p>
+          <div>
+            <h5>Episodes:</h5>
+            <ul>
+              {currentSeasonData.episodes.map((episode, index) => (
+                <li key={index} className="episodes">
+                  <p>
+                    Episode {episode.episode}: {episode.title}{" "}
+                    <img
+                      src={`../images/${
+                        isFavorite(episode.episode, showID, showSeason)
+                          ? "star-fill.svg"
+                          : "star-empty.svg"
+                      }`}
+                      className="star--empty"
+                      onClick={() => toggleFavorite(episode.episode)}
+                    />
+                  </p>
                               {episode.file && (
                                 <audio
                                   controls
@@ -147,6 +190,9 @@ function toggleFavorite() {
             )}
           </div>
         </DialogContent>
+        {favoriteEpisodes.length > 0 && (
+          <FavoriteEpisodesList favoriteEpisodes={favoriteEpisodes} />
+        )}
       </BootstrapDialog>
     </React.Fragment>
   );
