@@ -1,10 +1,23 @@
 * {
   list-style-type: none;
+  color: black;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
 }
 
 body {
   margin: 0;
-  font-family: "Karla", sans-serif;
+  font-family: 'Inter', sans-serif;
   background: linear-gradient(-45deg, #e9f151, #c984ca, #23d5ab, #9601fa);
   background-size: 400% 400%;
   animation: gradient 20s ease infinite;
@@ -79,13 +92,14 @@ nav {
 
 .nav--icons {
   display: flex;
-  justify-content: flex-end; /* Align icons to the right */
   align-items: center;
+  margin-bottom: 2rem; 
+  margin-right: 1rem; 
 }
 
 .nav--icon {
   height: 3vh;
-  margin-left: 1rem; /* Add some spacing between icons */
+  margin-left: 1rem; 
 }
 
 .explore--button {
@@ -93,8 +107,8 @@ nav {
   font-weight: 500;
   background-color: plum;
   border-style: none;
-  width: 80px;
-  height: 30px;
+  width: 10vw;
+  height: 3vh;
   border-radius: 20px;
   border-width: 0.1rem;
 }
@@ -212,6 +226,33 @@ nav {
   text-overflow: ellipsis;
 }
 
+.filter {
+  margin: 1rem;
+  padding: 1rem 1.5rem;
+  width: 92%;
+  font-size: 14px;
+  list-style-type: none;
+  background-color: azure;
+  border-color: #1a1a1a;
+  border-style: solid;
+  text-overflow: ellipsis;
+}
+
+select {
+  font-family: 'Inter', sans-serif;
+}
+
+input {
+  border-color: none;
+}
+
+.filter--label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+
+}
+
 .background {
   background: linear-gradient(-45deg, #e9f151, #c984ca, #23d5ab, #9601fa);
   background-size: 400% 400%;
@@ -266,7 +307,7 @@ nav {
 }
 
 .slick-slider {
-  position: relative; /* Make sure the parent container is positioned */
+  position: relative; 
   margin: 1rem;
   padding: 1rem 1.5rem;
   width: 100%;
@@ -279,7 +320,7 @@ nav {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  z-index: 1; /* Increase the z-index so that it appears above other elements */
+  z-index: 1; 
 }
 
 .slick-slide {

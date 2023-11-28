@@ -15,7 +15,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     },
   }));
 
-const HistoryPreviews = ({ childToParent, show, id }) => {
+const ShowPreviews = ({ childToParent, show, id }) => {
     const [open, setOpen] = React.useState(false);
     const [showData, setShowData] = React.useState({});
     const [showID, setShowID] = React.useState(id);
@@ -133,11 +133,8 @@ const HistoryPreviews = ({ childToParent, show, id }) => {
           </div>
         </DialogContent>
       </BootstrapDialog>
-    {/* <div>
-      <p>{id}</p>
-    </div> */}
     </React.Fragment>
   );
 };
 
-export default HistoryPreviews;
+export default ShowPreviews;
