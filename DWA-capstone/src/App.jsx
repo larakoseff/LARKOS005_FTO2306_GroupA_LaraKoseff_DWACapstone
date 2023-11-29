@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./Navbar.jsx";
 import "./index.css";
 import AllShows from "./components/AllShows.jsx";
+import FavoriteEpisodesList from "./components/Favourites.jsx";
 import FavoriteEpisodesPage from "./components/FavouriteEpisodesPage.jsx";
 import Home from "./components/Home.jsx";
 import { FavoritesProvider } from "./state/FavouritesContext.jsx";

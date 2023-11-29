@@ -57,7 +57,7 @@ const HistoryShows = () => {
         setShows(filteredShows);
         setTimeout(() => {
         setLoading(false);
-        }, 2000);
+        }, 1000);
       } catch (error) {
         console.error("Error fetching podcast shows:", error);
       }

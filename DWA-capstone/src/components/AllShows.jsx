@@ -24,7 +24,7 @@ export default function AllShows() {
         setShows(data);
         setTimeout(() => {
           setLoading(false);
-        }, 2000);
+        }, 1000);
       } catch (error) {
         console.error("Error fetching podcast shows:", error);
         setLoading(false);
