@@ -1,6 +1,5 @@
 * {
   list-style-type: none;
-  color: black;
 }
 
 a:link {
@@ -15,12 +14,22 @@ a:active {
   text-decoration: none;
 }
 
+@keyframes textShine {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif;
-  background: linear-gradient(-45deg, #e9f151, #c984ca, #23d5ab, #9601fa);
+  font-family: "Inter", sans-serif;
+  background-color: #1a1a1a;
+  /* background: linear-gradient(-45deg, #e9f151, #c984ca, #23d5ab, #9601fa);
   background-size: 400% 400%;
-  animation: gradient 20s ease infinite;
+  animation: gradient 20s ease infinite; */
   height: 100vh;
 }
 
@@ -68,39 +77,68 @@ ul.no-list-style {
 }
 
 nav {
-  margin: 1rem;
-  padding: 0.5rem 0.5rem;
-  width: 95%;
+  width: 100%;
+  padding: 1rem;
   font-family: "Vina Sans", sans-serif;
-  color: black;
-  background-color: azure;
   font-size: 5rem;
   height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-color: #1a1a1a;
-  border-style: solid;
-  box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1);
   position: fixed;
   z-index: 3;
+  background: linear-gradient(
+    to bottom,
+    rgba(26, 26, 26, 1),
+    rgba(26, 26, 26, 1),
+    rgba(26, 26, 26, 0.9),
+    rgba(26, 26, 26, 0.8),
+    rgba(26, 26, 26, 0.5),
+    rgba(26, 26, 26, 0)
+  );
 }
 
 .nav--logo {
+  letter-spacing: 3px;
   width: 60%;
-  margin: 1rem;
+  font-weight: bold;
+  background: linear-gradient(
+    to right,
+    #e9f151 20%,
+    #c984ca 30%,
+    #23d5ab 70%,
+    #9601fa 80%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+  background-size: 500% auto;
+  animation: textShine 5s ease-in-out infinite alternate;
 }
 
 .nav--icons {
   display: flex;
   align-items: center;
-  margin-bottom: 2rem; 
-  margin-right: 1rem; 
+  margin-bottom: 2rem;
+  padding-right: 3rem;
 }
 
 .nav--icon {
   height: 3vh;
-  margin-left: 1rem; 
+  margin-left: 1rem;
+}
+
+.clear--button {
+  font-family: "Chakra Petch", sans-serif;
+  font-weight: 500;
+  background-color: black;
+  color: azure;
+  border-style: none;
+  width: 15vw;
+  height: 3vh;
+  border-radius: 20px;
+  border-width: 0.1rem;
 }
 
 .explore--button {
@@ -172,21 +210,41 @@ nav {
 }
 
 .true--crime {
-  margin: 1rem;
-  padding: 0.5rem;
+  margin: 2rem;
+  padding: 0.1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 95%;
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
   font-weight: 500;
   font-size: 30px;
   letter-spacing: 1.5px;
   list-style-type: none;
-  /* background-color: greenyellow;
   border-color: #1a1a1a;
-  border-style: solid;
-  text-overflow: ellipsis; */
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-width: 3px;
+  text-overflow: ellipsis;
+}
+
+.section--heading {
+  margin: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 92%;
+  font-family: "Outfit", sans-serif;
+  font-weight: 500;
+  font-size: 30px;
+  letter-spacing: 1.5px;
+  list-style-type: none;
+  color: azure;
+  border-color: azure;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-width: 1px;
+  text-overflow: ellipsis;
 }
 
 .personal--growth {
@@ -196,7 +254,7 @@ nav {
   align-items: center;
   justify-content: space-between;
   width: 95%;
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
   font-weight: 500;
   font-size: 30px;
   letter-spacing: 1.5px;
@@ -214,7 +272,7 @@ nav {
   align-items: center;
   justify-content: space-between;
   width: 95%;
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
   font-weight: 500;
   font-size: 30px;
   letter-spacing: 1.5px;
@@ -226,7 +284,7 @@ nav {
 }
 
 .tc--icon {
-  height: 3vh;
+  height: 5vh;
 }
 
 .star--empty {
@@ -239,10 +297,11 @@ nav {
 
 .fav--episodes {
   padding: 1rem 1.5rem;
-  background-color: azure;
+  background-color: #f0ffff;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 2rem;
 }
 
 .fav--image {
@@ -257,7 +316,7 @@ nav {
   width: 50%;
   font-size: 15px;
   list-style-type: none;
-  background-color: azure;
+  background-color: red;
   border-color: #1a1a1a;
   border-style: solid;
   text-overflow: ellipsis;
@@ -265,33 +324,33 @@ nav {
 
 .filter {
   margin: 1rem;
-  padding: 1rem 1.5rem;
+  padding: 1rem;
   width: 92%;
   font-size: 14px;
   list-style-type: none;
-  background-color: azure;
-  border-color: #1a1a1a;
-  border-style: solid;
+  color: azure;
   text-overflow: ellipsis;
 }
 
 select {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
+  text-align: center;
   font-size: 20px;
-  width: auto;
+  width: 200px;
   border: none;
-  border-bottom: 2px solid #7600ff;;
-  background-color: azure;
+  /* border-bottom: 2px solid #7600ff; */
+  color: #7600ff;
+  background-color: #1a1a1a;
 }
 
-input[type=text] {
-  font-family: 'Inter', sans-serif;
+input[type="text"] {
+  font-family: "Inter", sans-serif;
   font-size: 20px;
   width: 50%;
   border: none;
-  border-bottom: 2px solid #7600ff;;
-  background-color: azure;
-
+  color: #7600ff;
+  /* border-bottom: 2px solid #7600ff; */
+  background-color: #1a1a1a;
 }
 
 input:focus-visible {
@@ -299,10 +358,9 @@ input:focus-visible {
 }
 
 .filter--label {
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
   font-weight: 400;
   font-size: 22px;
-
 }
 
 .background {
@@ -359,20 +417,20 @@ input:focus-visible {
 }
 
 .slick-slider {
-  position: relative; 
+  position: relative;
   margin: 1rem;
   padding: 1rem 1.5rem;
   width: 100%;
   font-size: 15px;
   list-style-type: none;
-  background-color: azure;
+  color: azure;
   border-color: #1a1a1a;
   border-style: solid;
   height: 60vh;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  z-index: 1; 
+  z-index: 1;
 }
 
 .slick-slide {
@@ -441,7 +499,8 @@ input:focus-visible {
   padding: 1rem 1.5rem;
   width: 100%;
   height: 50vh;
-  background-color: azure;
+  color: azure;
+  /* background-color: azure;
   border-color: #1a1a1a;
-  border-style: solid;
+  border-style: solid; */
 }

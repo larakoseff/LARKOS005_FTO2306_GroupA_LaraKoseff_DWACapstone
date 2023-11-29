@@ -15,27 +15,27 @@ export default function Home() {
         <br />
         <br />
         <br />
-        <div className="personal--growth">
-          <p>Personal Growth</p>
-          <img src="../images/projects-icon.svg" className="tc--icon" />
-        </div>
-        <div> </div>
-        <PersonalGrowthShows />
-        <div className="true--crime">
-          <p>True crime and Investigative Journalism</p>
-          <img src="../images/projects-icon.svg" className="tc--icon" />
-        </div>
-        <TrueCrimeShows />
-        <div className="history">
-          <p>History</p>
-          <img src="../images/projects-icon.svg" className="tc--icon" />
-        </div>
-        <HistoryShows />
-        <div className="history">
+        <div className="section--heading">
           <p>Recommended for you</p>
-          <img src="../images/projects-icon.svg" className="tc--icon" />
+          <img src="../images/box-white.svg" className="tc--icon" />
         </div>
         <RecommendedList />
+        <div className="section--heading">
+          <p>Personal Growth</p>
+          <img src="../images/face-white.svg" className="tc--icon" />
+        </div>
+        <PersonalGrowthShows />
+        <div className="section--heading">
+          <p>True crime and Investigative Journalism</p>
+          <img src="../images/blocks-white.svg" className="tc--icon" />
+        </div>
+        <TrueCrimeShows />
+        <div className="section--heading ">
+          <p>History</p>
+          <img src="../images/bird-white.svg" className="tc--icon" />
+        </div>
+        <HistoryShows />
+
       </div>
     </div>
   );

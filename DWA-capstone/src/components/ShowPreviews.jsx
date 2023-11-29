@@ -160,7 +160,7 @@ const ShowPreviews = ({ show, id }) => {
                       <div>
                         <h5>Episodes:</h5>
                         <Button
-                          className="explore--button"
+                          className="clear--button"
                           onClick={resetFavorites}
                         >
                           Clear favourites

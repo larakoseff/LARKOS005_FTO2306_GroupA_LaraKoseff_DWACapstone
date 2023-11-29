@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Divider from "@mui/material/Divider";
+import Box from "@mui/material/Box";
+
 
 const FavoriteEpisodesList = ({ favoriteEpisodes }) => {
   const [shows, setShows] = useState([]);
@@ -65,11 +67,11 @@ const FavoriteEpisodesList = ({ favoriteEpisodes }) => {
 
   return (
     <div>
-      <h2>Favorite Episodes</h2>
-      <br />
-      <br />
-      <br />
-      <br />
+<Box>
+
+      <div className="section--heading">
+      <p >Favorite Episodes</p>
+      </div>
       <br />
 
       <div className="filter">
@@ -80,7 +82,7 @@ const FavoriteEpisodesList = ({ favoriteEpisodes }) => {
           </label>
         </div>
         <br />
-        <Divider />
+        <Divider sx={{ borderColor: "white", borderWidth: "0.9px", my: 2 }} />
         <br />
         <div>
           <label className="filter--label">
@@ -96,7 +98,7 @@ const FavoriteEpisodesList = ({ favoriteEpisodes }) => {
           </label>
         </div>
         <br />
-        <Divider />
+        <Divider sx={{ borderColor: "white", borderWidth: "0.9px", my: 2 }} />
         <br />
         <div>
           <label className="filter--label">
@@ -112,11 +114,13 @@ const FavoriteEpisodesList = ({ favoriteEpisodes }) => {
           </label>
         </div>
         <br />
-        <Divider />
+        <Divider sx={{ borderColor: "white", borderWidth: "0.9px", my: 2 }} />
         <br />
         <button className="explore--button" onClick={handleClearFilters}>
         Clear Filters
       </button>
+      <br />
+      <br />
  </div>
 
  <ul className="no-list-style">
@@ -147,6 +151,7 @@ const FavoriteEpisodesList = ({ favoriteEpisodes }) => {
         )}
       </ul>
       <br />
+      </Box>
     </div>
   );
 };

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import ShowPreviews from "./ShowPreviews.jsx";
 import Divider from "@mui/material/Divider";
-// import FavoriteEpisodesList from "./Favourites.jsx";
 import "../index.css";
+import Box from "@mui/material/Box";
 
 export default function AllShows() {
   const [shows, setShows] = useState([]);
@@ -100,116 +100,121 @@ export default function AllShows() {
       <br />
       <br />
       <br />
-
-      <div className="filter">
-        <div>
-          <label className="filter--label">
-            Filter by Title:{" "}
-            <input type="text" value={filterTitle} onChange={handleFilter} />
-          </label>
-        </div>
-        <br />
-        <Divider />
-        <br />
-        <div>
-          <label className="filter--label">
-            Sort Alphabetically:{" "}
-            <select
-              value={sortType || ""}
-              onChange={(e) => handleSort(e.target.value)}
-            >
-              <option value="">Select</option>
-              <option value="title-asc">Title A-Z</option>
-              <option value="title-desc">Title Z-A</option>
-            </select>
-          </label>
-        </div>
-        <br />
-        <Divider />
-        <br />
-        <div>
-          <label className="filter--label">
-            Sort by date updated:{" "}
-            <select
-              value={sortType || ""}
-              onChange={(e) => handleSort(e.target.value)}
-            >
-              <option value="">Select</option>
-              <option value="date-asc">Date Ascending</option>
-              <option value="date-desc">Date Descending</option>
-            </select>
-          </label>
-        </div>
-        <br />
-        <Divider />
-        <br />
-        <div>
-          <label className="filter--label">
-            Filter by Genre:{" "}
-            <select
-              value={genreSort || ""}
-              onChange={(e) => handleSort(`genre-${e.target.value}`)}
-            >
-              <option value="">Select</option>
-              <option value="1">Personal Growth</option>
-              <option value="2">True Crime and Investigative Journalism</option>
-              <option value="3">History</option>
-              <option value="4">Comedy</option>
-              <option value="5">Entertainment</option>
-              <option value="6">Business</option>
-              <option value="7">Fiction</option>
-              <option value="8">News</option>
-              <option value="9">Kids and Family</option>
-            </select>
-          </label>
-        </div>
-        <br />
-        <Divider />
-        <br />
-        <div>
-          <button className="explore--button" onClick={handleClearFilters}>
-            Clear Filters
-          </button>
-        </div>
-        <br />
-        <Divider />
-        <br />
-        {loading ? (
-          <p>Loading...</p>
-        ) : filteredAndSortedShows.length === 0 ? (
-          noMatchesMessage
-        ) : (
-          <ul className="no-list-style">
-            {filteredAndSortedShows.map((show) => (
-              <div key={show.id}>
-                <h3 className="card--title">{show.title} </h3>
-                {show.image && (
-                  <img
-                    src={show.image}
-                    className="card--image"
-                    alt={show.title}
-                  />
-                )}
-                <p>{truncateDescription(show.description, 40)}</p>
-                <div>Seasons: {show.seasons}</div>
-                <div>
-                  Last updated: {new Date(show.updated).toLocaleString()}
-                </div>
-                <br />
-
-                <div className="child">
-                  <ShowPreviews
-                    key={show.id}
-                    id={parseInt(show.id, 10)}
-                  />
-                </div>
-                <br />
-                <Divider />
-              </div>
-            ))}
-          </ul>
-        )}
+      <Box>
+      <div className="section--heading">
+      <p >Search All Shows</p>
       </div>
+      <br />  
+        <div className="filter">
+          <div>
+            <label className="filter--label">
+              Filter by Title:{" "}
+              <input type="text" value={filterTitle} onChange={handleFilter} />
+            </label>
+          </div>
+          <br />
+
+          <Divider sx={{ borderColor: "white", borderWidth: "0.9px", my: 2,}} />
+
+          <br />
+          <div>
+            <label className="filter--label">
+              Sort Alphabetically:{" "}
+              <select
+                value={sortType || ""}
+                onChange={(e) => handleSort(e.target.value)}
+              >
+                <option value="">Select</option>
+                <option value="title-asc">Title A-Z</option>
+                <option value="title-desc">Title Z-A</option>
+              </select>
+            </label>
+          </div>
+          <br />
+          <Divider sx={{ borderColor: "white", borderWidth: "0.9px", my: 2 }} />
+          <br />
+          <div>
+            <label className="filter--label">
+              Sort by date updated:{" "}
+              <select
+                value={sortType || ""}
+                onChange={(e) => handleSort(e.target.value)}
+              >
+                <option value="">Select</option>
+                <option value="date-asc">Date Ascending</option>
+                <option value="date-desc">Date Descending</option>
+              </select>
+            </label>
+          </div>
+          <br />
+          <Divider sx={{ borderColor: "white", borderWidth: "0.9px", my: 2 }} />
+          <br />
+          <div>
+            <label className="filter--label">
+              Filter by Genre:{" "}
+              <select
+                value={genreSort || ""}
+                onChange={(e) => handleSort(`genre-${e.target.value}`)}
+              >
+                <option value="">Select</option>
+                <option value="1">Personal Growth</option>
+                <option value="2">
+                  True Crime and Investigative Journalism
+                </option>
+                <option value="3">History</option>
+                <option value="4">Comedy</option>
+                <option value="5">Entertainment</option>
+                <option value="6">Business</option>
+                <option value="7">Fiction</option>
+                <option value="8">News</option>
+                <option value="9">Kids and Family</option>
+              </select>
+            </label>
+          </div>
+          <br />
+          <Divider sx={{ borderColor: "white", borderWidth: "0.9px", my: 2 }} />
+          <br />
+          <div>
+            <button className="explore--button" onClick={handleClearFilters}>
+              Clear Filters
+            </button>
+          </div>
+          <br />
+          <br />
+          <br />
+          {loading ? (
+            <p>Loading...</p>
+          ) : filteredAndSortedShows.length === 0 ? (
+            noMatchesMessage
+          ) : (
+            <ul className="no-list-style">
+              {filteredAndSortedShows.map((show) => (
+                <div key={show.id}>
+                  <h3 className="card--title">{show.title} </h3>
+                  {show.image && (
+                    <img
+                      src={show.image}
+                      className="card--image"
+                      alt={show.title}
+                    />
+                  )}
+                  <p>{truncateDescription(show.description, 40)}</p>
+                  <div>Seasons: {show.seasons}</div>
+                  <div>
+                    Last updated: {new Date(show.updated).toLocaleString()}
+                  </div>
+                  <br />
+
+                  <div className="child">
+                    <ShowPreviews key={show.id} id={parseInt(show.id, 10)} />
+                  </div>
+                  <br />
+                </div>
+              ))}
+            </ul>
+          )}
+        </div>
+      </Box>
     </>
   );
 }
