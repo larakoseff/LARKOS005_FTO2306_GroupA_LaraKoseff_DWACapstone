@@ -18,7 +18,7 @@ const FavoriteEpisodesList = ({ favoriteEpisodes }) => {
     };
 
     fetchData();
-  }, [favoriteEpisodes]); // Fetch data when favoriteEpisodes changes
+  }, [favoriteEpisodes]); 
 
   const handleSort = (type) => {
     setSortType(type);
@@ -128,7 +128,7 @@ const FavoriteEpisodesList = ({ favoriteEpisodes }) => {
             return (
               <li className="fav--episodes" key={`${episodeId}-${episode.showID}-${season}`}>
                 {image && (
-                  <img className="fav--image" src={image} alt={`${title} Poster`} />
+                  <img className="fav--image" src={image}/>
                 )}
 
                 <p>
@@ -138,6 +138,7 @@ const FavoriteEpisodesList = ({ favoriteEpisodes }) => {
                 <audio controls src="https://podcast-api.netlify.app/placeholder-audio.mp3">
                   Your browser does not support the <code>audio</code> element.
                 </audio>
+                
               </li>
             );
           })

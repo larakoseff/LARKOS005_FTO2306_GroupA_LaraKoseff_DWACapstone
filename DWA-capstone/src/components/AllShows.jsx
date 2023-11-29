@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ShowPreviews from "./ShowPreviews.jsx";
 import Divider from "@mui/material/Divider";
-import FavoriteEpisodesList from "./Favourites.jsx";
+// import FavoriteEpisodesList from "./Favourites.jsx";
 import "../index.css";
 
 export default function AllShows() {
