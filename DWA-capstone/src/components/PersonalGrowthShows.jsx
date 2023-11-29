@@ -37,12 +37,7 @@ function PrevArrow(props) {
 const PersonalGrowthShows = () => {
   const [shows, setShows] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [previewData, setPreviewData] = useState("");
   const targetGenreId = 1;
-
-  const childToParent = (childdata) => {
-    setPreviewData(childdata);
-  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -105,7 +100,6 @@ const PersonalGrowthShows = () => {
 
               <div className="child">
                 <ShowPreviews
-                  childToParent={childToParent}
                   key={show.id}
                   id={parseInt(show.id, 10)}
                 />

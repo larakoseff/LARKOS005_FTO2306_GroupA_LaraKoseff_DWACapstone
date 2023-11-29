@@ -19,7 +19,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-const ShowPreviews = ({ childToParent, show, id }) => {
+const ShowPreviews = ({ show, id }) => {
   const [open, setOpen] = React.useState(false);
   const [showData, setShowData] = React.useState({});
   const [showID, setShowID] = React.useState(id);

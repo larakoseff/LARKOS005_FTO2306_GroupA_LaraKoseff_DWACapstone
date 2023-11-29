@@ -37,12 +37,7 @@ function PrevArrow(props) {
 const HistoryShows = () => {
   const [shows, setShows] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [previewData, setPreviewData] = useState("");
   const targetGenreId = 3;
-
-  const childToParent = (childdata) => {
-    setPreviewData(childdata);
-  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -105,7 +100,6 @@ const HistoryShows = () => {
 
               <div className="child">
                 <ShowPreviews
-                  childToParent={childToParent}
                   key={show.id}
                   id={parseInt(show.id, 10)}
                 />
