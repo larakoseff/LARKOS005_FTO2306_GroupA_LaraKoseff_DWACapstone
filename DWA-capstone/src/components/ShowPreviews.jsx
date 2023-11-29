@@ -46,7 +46,7 @@ const ShowPreviews = ({ show, id }) => {
 
   const toggleFavorite = (episodeId) => {
     const index = findFavoriteIndex(episodeId, showID, showSeason);
-
+  
     if (index !== -1) {
       setFavorites((prevFavorites) => [
         ...prevFavorites.slice(0, index),
@@ -55,7 +55,7 @@ const ShowPreviews = ({ show, id }) => {
     } else {
       setFavorites((prevFavorites) => [
         ...prevFavorites,
-        { episodeId, showID, season: showSeason },
+        { episodeId, showID, season: showSeason, timestamp: Date.now() },
       ]);
     }
   };

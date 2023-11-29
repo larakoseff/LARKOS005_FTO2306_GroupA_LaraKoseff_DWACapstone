@@ -119,18 +119,20 @@ const FavoriteEpisodesList = ({ favoriteEpisodes }) => {
       </button>
  </div>
 
-      <ul className="no-list-style">
+ <ul className="no-list-style">
         {Array.isArray(filteredAndSortedEpisodes) && filteredAndSortedEpisodes.length > 0 ? (
           filteredAndSortedEpisodes.map((episode) => {
             const { title, image, updated } = getShowInfo(episode.showID);
+            const { season, episodeId, timestamp } = episode;
+
             return (
-              <li className="fav--episodes" key={`${episode.episodeId}-${episode.showID}-${episode.season}`}>
+              <li className="fav--episodes" key={`${episodeId}-${episode.showID}-${season}`}>
                 {image && (
                   <img className="fav--image" src={image} alt={`${title} Poster`} />
                 )}
 
                 <p>
-                  Show: {title}, Season: {episode.season}, Episode: {episode.episodeId}, Last updated: {new Date(updated).toLocaleString()}
+                  Show: {title}, Season: {season}, Episode: {episodeId}, Last updated: {new Date(updated).toLocaleString()}, Added on: {new Date(timestamp).toLocaleString()}
                 </p>
 
                 <audio controls src="https://podcast-api.netlify.app/placeholder-audio.mp3">
@@ -144,7 +146,6 @@ const FavoriteEpisodesList = ({ favoriteEpisodes }) => {
         )}
       </ul>
       <br />
-
     </div>
   );
 };
