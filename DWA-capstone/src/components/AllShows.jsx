@@ -7,14 +7,9 @@ import "../index.css";
 export default function AllShows() {
   const [shows, setShows] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [previewData, setPreviewData] = useState("");
   const [sortType, setSortType] = useState("");
   const [genreSort, setGenreSort] = useState("");
   const [filterTitle, setFilterTitle] = useState("");
-
-  const childToParent = (childdata) => {
-    setPreviewData(childdata);
-  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -204,7 +199,6 @@ export default function AllShows() {
 
                 <div className="child">
                   <ShowPreviews
-                    childToParent={childToParent}
                     key={show.id}
                     id={parseInt(show.id, 10)}
                   />

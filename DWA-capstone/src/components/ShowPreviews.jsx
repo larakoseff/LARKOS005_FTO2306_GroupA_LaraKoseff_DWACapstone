@@ -5,10 +5,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import FavoriteEpisodesList from "./Favourites.jsx"
-// import { useNavigate } from 'react-router-dom';
-// import { useFavorites } from "../state/FavouritesContext.jsx"
-
+import FavoriteEpisodesList from "./Favourites.jsx";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -28,12 +25,6 @@ const ShowPreviews = ({ show, id }) => {
     const storedFavorites = localStorage.getItem("favorites");
     return storedFavorites ? JSON.parse(storedFavorites) : [];
   });
-  // const { dispatch } = useFavorites(); // Access global favorites state
-  // const navigate = useNavigate(); // Use useNavigate to handle navigation
-
-  // const handleNavigateToFavorites = () => {
-  //   navigate('/favorites');
-  // };
 
   const findFavoriteIndex = (episodeId, showID, season) => {
     return favorites.findIndex(
@@ -44,33 +35,30 @@ const ShowPreviews = ({ show, id }) => {
     );
   };
 
-const isFavorite = (episodeId, showID, season) => {
+  const isFavorite = (episodeId, showID, season) => {
     const index = findFavoriteIndex(episodeId, showID, season);
     return index !== -1;
   };
 
-const toggleFavorite = (episodeId) => {
-  const index = findFavoriteIndex(episodeId, showID, showSeason);
+  const resetFavorites = () => {
+    setFavorites([]);
+  };
 
-  if (index !== -1) {
+  const toggleFavorite = (episodeId) => {
+    const index = findFavoriteIndex(episodeId, showID, showSeason);
 
-    setFavorites((prevFavorites) => [
-      ...prevFavorites.slice(0, index),
-      ...prevFavorites.slice(index + 1),
-    ]);
-  } else {
-
-    setFavorites((prevFavorites) => [
-      ...prevFavorites,
-      { episodeId, showID, season: showSeason },
-    ]);
-  }
-
-  // dispatch({
-  //   type: 'TOGGLE_FAVORITE',
-  //   payload: { episodeId, showID, season: showSeason },
-  // });
-};
+    if (index !== -1) {
+      setFavorites((prevFavorites) => [
+        ...prevFavorites.slice(0, index),
+        ...prevFavorites.slice(index + 1),
+      ]);
+    } else {
+      setFavorites((prevFavorites) => [
+        ...prevFavorites,
+        { episodeId, showID, season: showSeason },
+      ]);
+    }
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -93,25 +81,25 @@ const toggleFavorite = (episodeId) => {
   const currentSeasonData = showData.seasons?.[showSeason - 1] || {};
 
   const favoriteEpisodes = currentSeasonData.episodes
-  ? currentSeasonData.episodes
-      .filter((episode) => isFavorite(episode.episode, showID, showSeason))
-      .map((episode) => ({
-        episodeId: episode.episode,
-        showID,
-        season: showSeason,
-        title: episode.title,
-        showTitle: showData.title,
-        seasonTitle: currentSeasonData.title,
-        file: episode.file,
-      }))
-  : [];
-
+    ? currentSeasonData.episodes
+        .filter((episode) => isFavorite(episode.episode, showID, showSeason))
+        .map((episode) => ({
+          episodeId: episode.episode,
+          showID,
+          season: showSeason,
+          title: episode.title,
+          showTitle: showData.title,
+          seasonTitle: currentSeasonData.title,
+          file: episode.file,
+        }))
+    : [];
 
   return (
     <React.Fragment>
       <Button className="explore--button" onClick={handleClickOpen}>
         Explore
       </Button>
+
       <BootstrapDialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
@@ -169,23 +157,35 @@ const toggleFavorite = (episodeId) => {
                   <div>
                     <h4>{currentSeasonData.title}</h4>
                     {currentSeasonData.episodes && (
-          <div>
-            <h5>Episodes:</h5>
-            <ul className="no-list-style">
-              {currentSeasonData.episodes.map((episode, index) => (
-                <li key={index} className="episodes">
-                  <p>
-                    Episode {episode.episode}: {episode.title}{" "}
-                    <img
-                      src={`../images/${
-                        isFavorite(episode.episode, showID, showSeason)
-                          ? "star-fill.svg"
-                          : "star-empty.svg"
-                      }`}
-                      className="star--empty"
-                      onClick={() => toggleFavorite(episode.episode)}
-                    />
-                  </p>
+                      <div>
+                        <h5>Episodes:</h5>
+                        <Button
+                          className="explore--button"
+                          onClick={resetFavorites}
+                        >
+                          Clear favourites
+                        </Button>
+                        <ul className="no-list-style">
+                          {currentSeasonData.episodes.map((episode, index) => (
+                            <li key={index} className="episodes">
+                              <p>
+                                Episode {episode.episode}: {episode.title}{" "}
+                                <img
+                                  src={`../images/${
+                                    isFavorite(
+                                      episode.episode,
+                                      showID,
+                                      showSeason
+                                    )
+                                      ? "star-fill.svg"
+                                      : "star-empty.svg"
+                                  }`}
+                                  className="star--empty"
+                                  onClick={() =>
+                                    toggleFavorite(episode.episode)
+                                  }
+                                />
+                              </p>
                               {episode.file && (
                                 <audio
                                   controls

@@ -5,6 +5,8 @@ import FavoriteEpisodesList from "./Favourites.jsx";
 const FavoriteEpisodesPage = () => {
   const { favorites } = useFavorites();
 
+  console.log("Favorites in FavoriteEpisodesPage:", favorites);
+
   return (
     <>
       <div>
