@@ -40,7 +40,7 @@ const RecommendedList = () => {
 
 
   useEffect(() => {
-    const targetIds = [5279, 10539, 9177, 9664];
+    const targetIds = [8256, 9691, 9664, 6430];
     const fetchData = async () => {
       try {
         const response = await fetch("https://podcast-api.netlify.app/shows");

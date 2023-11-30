@@ -16,7 +16,7 @@ export default function Home() {
         <br />
         <br />
         <div className="section--heading">
-          <p>Recommended for you</p>
+          <p>What We're Loving</p>
           <img src="../images/box-white.svg" className="tc--icon" />
         </div>
         <RecommendedList />
@@ -35,7 +35,6 @@ export default function Home() {
           <img src="../images/bird-white.svg" className="tc--icon" />
         </div>
         <HistoryShows />
-
       </div>
     </div>
   );
