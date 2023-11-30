@@ -5,7 +5,6 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-// import FavoriteEpisodesList from "./Favourites.jsx";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -16,7 +15,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-const ShowPreviews = ({ show, id }) => {
+const ShowPreviews = ({ id }) => {
   const [open, setOpen] = React.useState(false);
   const [showData, setShowData] = React.useState({});
   const [showID, setShowID] = React.useState(id);
@@ -206,9 +205,6 @@ const ShowPreviews = ({ show, id }) => {
             )}
           </div>
         </DialogContent>
-        {/* {favoriteEpisodes.length > 0 && (
-          <FavoriteEpisodesList favoriteEpisodes={favoriteEpisodes} />
-        )} */}
       </BootstrapDialog>
     </React.Fragment>
   );

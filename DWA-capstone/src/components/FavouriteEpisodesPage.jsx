@@ -19,7 +19,7 @@ const FavoriteEpisodesPage = () => {
           {favorites.length > 0 ? (
             <FavoriteEpisodesList  favoriteEpisodes={favorites} />
           ) : (
-            <p>No favorite episodes</p>
+            <p className="nofav--title">No favorite episodes</p>
           )}
         </div>
       </div>

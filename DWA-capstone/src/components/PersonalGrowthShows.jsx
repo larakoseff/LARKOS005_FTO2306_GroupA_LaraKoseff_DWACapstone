@@ -9,7 +9,7 @@ import "../index.css";
 function NextArrow(props) {
   const { className, style, onClick } = props;
   return (
-    <div  onClick={onClick}>
+    <div onClick={onClick}>
       <img
         src="../images/caret-circle-right-purple.svg"
         style={{ ...style, height: "4rem" }}
@@ -28,7 +28,7 @@ function PrevArrow(props) {
         src="../images/caret-circle-left-purple.svg"
         style={{ ...style, display: "block", height: "4rem" }}
         alt="Previous Arrow"
-        className={`${className} slider--arrow-prev`} 
+        className={`${className} slider--arrow-prev`}
       />
     </div>
   );
@@ -51,7 +51,7 @@ const PersonalGrowthShows = () => {
 
         setShows(filteredShows);
         setTimeout(() => {
-        setLoading(false);
+          setLoading(false);
         }, 1000);
       } catch (error) {
         console.error("Error fetching podcast shows:", error);
@@ -76,37 +76,66 @@ const PersonalGrowthShows = () => {
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
-    
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 667,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          className: "center",
+          centerMode: true,
+          centerPadding: "60px",
+          infinite: true,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
     <div className="custom-slider-container">
-        {loading ? (
+      {loading ? (
         <div className="loading-container">
-        <div className="card--title">Loading...</div>
-      </div>
+          <div className="card--title">Loading...</div>
+        </div>
       ) : (
-      <Slider {...settings}>
-        {shows.map((show) => (
-          <div key={show.id}>
-            <h3 className="card--title">{show.title} </h3>
-            {show.image && (
-              <img src={show.image} className="card--image" alt={show.title} />
-            )}
-            <p>{truncateDescription(show.description, 40)}</p>
-            <div>Seasons: {show.seasons}</div>
-            <div>Last updated: {new Date(show.updated).toLocaleString()}</div>
-            <br />
+        <Slider {...settings}>
+          {shows.map((show) => (
+            <div key={show.id}>
+              <h3 className="card--title">{show.title} </h3>
+              {show.image && (
+                <img
+                  src={show.image}
+                  className="card--image"
+                  alt={show.title}
+                />
+              )}
+              <p>{truncateDescription(show.description, 40)}</p>
+              <div>Seasons: {show.seasons}</div>
+              <div>Last updated: {new Date(show.updated).toLocaleString()}</div>
+              <br />
 
               <div className="child">
-                <ShowPreviews
-                  key={show.id}
-                  id={parseInt(show.id, 10)}
-                />
+                <ShowPreviews key={show.id} id={parseInt(show.id, 10)} />
+              </div>
             </div>
-          </div>
-        ))}
-      </Slider>
+          ))}
+        </Slider>
       )}
     </div>
   );

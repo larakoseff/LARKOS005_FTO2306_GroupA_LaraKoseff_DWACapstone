@@ -159,7 +159,7 @@ const FavoriteEpisodesList = ({ favoriteEpisodes }) => {
               );
             })
           ) : (
-            <p>No favorite episodes</p>
+            <p className="card--title">No favorite episodes</p>
           )}
         </ul>
         <br />

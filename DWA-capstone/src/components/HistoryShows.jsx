@@ -76,6 +76,36 @@ const HistoryShows = () => {
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 667,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          className: "center",
+          centerMode: true,
+          centerPadding: "60px",
+
+
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
     
   };
 

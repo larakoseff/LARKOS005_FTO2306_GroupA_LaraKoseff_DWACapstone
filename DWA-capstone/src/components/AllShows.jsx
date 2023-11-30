@@ -184,7 +184,7 @@ export default function AllShows() {
           <br />
           <br />
           {loading ? (
-            <p>Loading...</p>
+            <p className="card--title">Loading...</p>
           ) : filteredAndSortedShows.length === 0 ? (
             noMatchesMessage
           ) : (
@@ -199,9 +199,9 @@ export default function AllShows() {
                       alt={show.title}
                     />
                   )}
-                  <p>{truncateDescription(show.description, 40)}</p>
-                  <div>Seasons: {show.seasons}</div>
-                  <div>
+                  <p className="show--description">{truncateDescription(show.description, 40)}</p>
+                  <div className="seasons--updated">Seasons: {show.seasons}</div>
+                  <div className="seasons--updated">
                     Last updated: {new Date(show.updated).toLocaleString()}
                   </div>
                   <br />
