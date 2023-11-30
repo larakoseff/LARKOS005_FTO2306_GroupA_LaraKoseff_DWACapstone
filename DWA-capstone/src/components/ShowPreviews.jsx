@@ -117,7 +117,7 @@ const ShowPreviews = ({ id }) => {
           <CloseIcon />
         </IconButton>
         <DialogContent dividers>
-          <div>
+          <div className="dialog--title">
             {showData.title && (
               <div>
                 <h3 className="card--title">{showData.title}</h3>

@@ -659,7 +659,7 @@ input:focus-visible {
     font-size: 20px;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: azure;
+    color:#1a1a1a;
   }
 
   .nofav--title {
@@ -705,6 +705,100 @@ input:focus-visible {
   justify-content: space-between;
   z-index: 2;
 }
+}
+
+.dialog--title {
+  color:#1a1a1a;
+}
+
+/* -------Mobile View---------*/
+
+@media all and (max-height: 896px) {
+  .slick-slider {
+    position: relative;
+    margin: 0.5rem;
+    padding: 1rem 1rem;
+    width: 100%;
+    font-size: 15px;
+    list-style-type: none;
+    color: azure;
+    border-color: #1a1a1a;
+    border-style: solid;
+    height: 80vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: 1;
+  }
+
+  .explore--button {
+    font-family: "Chakra Petch", sans-serif;
+    font-weight: 500;
+    background-color: plum;
+    border-style: none;
+    width: 40vw;
+    height: 4vh;
+    border-radius: 20px;
+    border-width: 0.1rem;
+  }
+
+  .dialog--title {
+    color:#1a1a1a;
+  }
+
+}
+
+@media all and (max-width: 390px) and (max-height: 844px) {
+  .nav--logo {
+    padding: 0.5rem;
+    letter-spacing: 3px;
+    line-height: 1;
+    font-weight: bold;
+    font-size: 28px;
+    width: 40%;
+    background: linear-gradient(
+      to right,
+      #e9f151 20%,
+      #c984ca 30%,
+      #23d5ab 70%,
+      #9601fa 80%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 500% auto;
+    animation: textShine 5s ease-in-out infinite alternate;
+  }
+}
+
+@media all and (max-width: 430px) and (max-height: 932px) {
+  .slick-slider {
+    position: relative;
+    margin: 0.5rem;
+    padding: 1rem 1rem;
+    width: 100%;
+    font-size: 15px;
+    list-style-type: none;
+    color: azure;
+    border-color: #1a1a1a;
+    border-style: solid;
+    height: 75vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: 1;
+  }
+
+  .explore--button {
+    font-family: "Chakra Petch", sans-serif;
+    font-weight: 500;
+    background-color: plum;
+    border-style: none;
+    width: 40vw;
+    height: 4vh;
+    border-radius: 20px;
+    border-width: 0.1rem;
+  }
 }
 
 /* -------Large Mobile/Small Tablet View---------*/
