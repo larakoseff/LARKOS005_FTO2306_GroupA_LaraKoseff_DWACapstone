@@ -9,7 +9,7 @@ import "../index.css";
 function NextArrow(props) {
   const { className, style, onClick } = props;
   return (
-    <div onClick={onClick}>
+    <div  onClick={onClick}>
       <img
         src="../images/caret-circle-right-purple.svg"
         style={{ ...style, height: "4rem" }}
@@ -34,9 +34,10 @@ function PrevArrow(props) {
   );
 }
 
-const Recommended = ({ showIds }) => {
+const Fiction = () => {
   const [shows, setShows] = useState([]);
   const [loading, setLoading] = useState(true);
+  const targetGenreId = 7;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,12 +46,12 @@ const Recommended = ({ showIds }) => {
         const data = await response.json();
 
         const filteredShows = data.filter((show) =>
-          showIds.includes(show.id)
+          show.genres.includes(targetGenreId)
         );
 
         setShows(filteredShows);
         setTimeout(() => {
-          setLoading(false);
+        setLoading(false);
         }, 1000);
       } catch (error) {
         console.error("Error fetching podcast shows:", error);
@@ -58,7 +59,7 @@ const Recommended = ({ showIds }) => {
     };
 
     fetchData();
-  }, [showIds]);
+  }, [targetGenreId]);
 
   const truncateDescription = (description, maxWords) => {
     const words = description.split(" ");
@@ -75,40 +76,40 @@ const Recommended = ({ showIds }) => {
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
+    
   };
 
   return (
     <div className="custom-slider-container">
-      {loading ? (
+        {loading ? (
         <div className="loading-container">
-          <div className="card--title">Loading...</div>
-        </div>
+        <div className="card--title">Loading...</div>
+      </div>
       ) : (
-        <Slider {...settings}>
-          {shows.map((show) => (
-            <div key={show.id}>
-              <h3 className="card--title">{show.title} </h3>
-              {show.image && (
-                <img
-                  src={show.image}
-                  className="card--image"
-                  alt={show.title}
-                />
-              )}
-              <p>{truncateDescription(show.description, 40)}</p>
-              <div>Seasons: {show.seasons}</div>
-              <div>Last updated: {new Date(show.updated).toLocaleString()}</div>
-              <br />
+      <Slider {...settings}>
+        {shows.map((show) => (
+          <div key={show.id}>
+            <h3 className="card--title">{show.title} </h3>
+            {show.image && (
+              <img src={show.image} className="card--image" alt={show.title} />
+            )}
+            <p>{truncateDescription(show.description, 40)}</p>
+            <div>Seasons: {show.seasons}</div>
+            <div>Last updated: {new Date(show.updated).toLocaleString()}</div>
+            <br />
 
               <div className="child">
-                <ShowPreviews key={show.id} id={parseInt(show.id, 10)} />
-              </div>
+                <ShowPreviews
+                  key={show.id}
+                  id={parseInt(show.id, 10)}
+                />
             </div>
-          ))}
-        </Slider>
+          </div>
+        ))}
+      </Slider>
       )}
     </div>
   );
 };
 
-export default Recommended;
+export default Fiction;

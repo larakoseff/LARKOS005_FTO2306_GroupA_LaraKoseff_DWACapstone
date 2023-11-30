@@ -102,8 +102,9 @@ export default function AllShows() {
       <br />
       <Box>
       <div className="section--heading">
-      <p >Search All Shows</p>
-      </div>
+          <p>Search All Shows</p>
+          <img src="../images/blocks-white.svg" className="tc--icon" />
+        </div>
       <br />  
         <div className="filter">
           <div>
