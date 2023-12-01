@@ -1,6 +1,6 @@
 # 🎙 Pod is in the Details 🎧
 
-Welcome to **Pod is in the Details**, your discerning platform for podcast discovery, where beautiful design meets fascinating content. This platform is designed to be your go-to podcast hub, providing a seamless and enjoyable experience for exploring and listening to your favorite shows.
+Welcome to **Pod is in the Details**, your discerning platform for podcast discovery, where beautiful design meets fascinating content. This platform is designed to be your go-to podcast hub, providing a seamless and enjoyable experience for exploring and listening to your favorite shows. The app has been deployed via Netlify and can be accessed via the custom URL: https://subtle-croissant-aa7f9d.netlify.app/
 
 ## Features
 
