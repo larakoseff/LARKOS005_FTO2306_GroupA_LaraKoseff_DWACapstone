@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+
 import * as React from "react";
 import { Button } from "semantic-ui-react";
 import { styled } from "@mui/material/styles";

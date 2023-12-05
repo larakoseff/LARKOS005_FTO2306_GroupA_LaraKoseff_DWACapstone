@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import React, { useState, useEffect } from "react";
 import { useFavorites } from "../state/FavouritesContext.jsx";
 import FavoriteEpisodesList from "./Favourites.jsx";

@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import React, { useState, useEffect } from "react";
 import ShowPreviews from "./ShowPreviews.jsx";
 import Divider from "@mui/material/Divider";
